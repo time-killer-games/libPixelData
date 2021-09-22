@@ -3,7 +3,7 @@ cd "${0%/*}"
 cd "src"
 
 if [ $(uname) = "Darwin" ]; then
-  clang++ widenarrow.cpp rgbtorgba.cpp pngformat.cpp bmpformat.cpp libpixeldata.cpp /opt/local/lib/libz.a /opt/local/lib/libpng.a -I../include/ -o ../libPixelData.dylib -std=c++17 -shared -I/opt/local/include -lz -lpng -m64 -fPIC
+  clang++ widenarrow.cpp rgbtorgba.cpp pngformat.cpp bmpformat.cpp libpixeldata.cpp /opt/local/lib/libz.a /opt/local/lib/libpng.a -I../include/ -o ../libPixelData.dylib -std=c++17 -shared -I/opt/local/include -m64 -fPIC
 elif [ $(uname) = "Linux" ]; then
   g++ widenarrow.cpp rgbtorgba.cpp pngformat.cpp bmpformat.cpp libpixeldata.cpp -I../include/ -o ../libPixelData.so -std=c++17 -shared -static-libgcc -static-libstdc++ -lz -lpng -m64 -fPIC
 elif [ $(uname) = "FreeBSD" ]; then
