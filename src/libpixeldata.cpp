@@ -52,8 +52,7 @@ EXPORTED_FUNCTION double image_load(const char *filename) {
   if (!loadBMP(filename, &src, &width[filename], &height[filename])) {
     free(src);
     return true;
-  }
-  if (!loadPNG(filename, &src, &width[filename], &height[filename], &alpha)) {
+  } else if (!loadPNG(filename, &src, &width[filename], &height[filename], &alpha)) {
     free(src);
     return true;
   }
@@ -85,14 +84,15 @@ EXPORTED_FUNCTION double image_set_buffer(const char *filename, char *buffer) {
   if (dst) {
     if (!loadBMP(filename, &src, &width[filename], &height[filename])) {
       rgb_to_rgba(src, &dst, width[filename], height[filename], true);
+      free(src);
       return true;
-    }
-    if (!loadPNG(filename, &src, &width[filename], &height[filename], &alpha)) {
+    } else if (!loadPNG(filename, &src, &width[filename], &height[filename], &alpha)) {
       if (!alpha) {
         rgb_to_rgba(src, &dst, width[filename], height[filename], false);
       } else {
         copy_rgba(src, &dst, width[filename], height[filename]);
       }
+      free(src);
       return true;
     }
   }
