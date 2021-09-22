@@ -33,9 +33,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "widenarrow.h"
 #endif
 
+#if defined(PREFER_LIBPNG)
 #include <png.h>
+#else
+#include "lodepng.h"
+#endif
 
 int loadPNG(const char *filename, unsigned char **pixels, int *width, int *height, bool *alpha) {
+  #if defined(PREFER_LIBPNG)
   (*width) = 0; (*height) = 0;
   #if !defined(_WIN32)
   FILE *fp = fopen(filename, "rb");
@@ -121,9 +126,14 @@ int loadPNG(const char *filename, unsigned char **pixels, int *width, int *heigh
   (*pixels) = image;
 
   return 0;
+  #else
+  *alpha = true;
+  return lodepng_decode32_file(pixels, (unsigned *)width, (unsigned *)height, filename);
+  #endif
 }
 
 int writePNG(const char *filename, unsigned char *data, int width, int height) {
+  #if defined(PREFER_LIBPNG)
   #if !defined(_WIN32)
   FILE *fp = fopen(filename, "wb");
   #else
@@ -161,4 +171,7 @@ int writePNG(const char *filename, unsigned char *data, int width, int height) {
   png_destroy_write_struct(&png, &info);
 
   return 0;
+  #else
+  return lodepng_encode32_file(filename, data, width, height);
+  #endif
 }
