@@ -3,6 +3,7 @@
 BSD 2-Clause License
 
 Copyright © 2019, phm97
+Copyright © 2021, Samuel Venable
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
