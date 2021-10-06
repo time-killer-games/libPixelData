@@ -47,7 +47,7 @@ void rgb_to_rgba(unsigned char *src, unsigned char **dst, int w, int h, bool fli
       offset += 4;
     }
   }
-  for (unsigned int i = 0; i < h; i++) {
+  for (int i = 0; i < h; i++) {
     memcpy(&data[i * w * 4 * sizeof(unsigned char)],
     &pixels[(flip ? (h - i - 1) : i) * w * 4 * sizeof(unsigned char)],
     w * 4 * sizeof(unsigned char));  
