@@ -2,7 +2,7 @@
 
 BSD 2-Clause License
 
-Copyright © 2018-2019 Robert B. Colton
+Copyright © 2018-2019, Robert B. Colton
 Copyright © 2021, Samuel Venable
 All rights reserved.
 
