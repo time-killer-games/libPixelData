@@ -43,7 +43,7 @@ void rgb_to_rgba(unsigned char *src, unsigned char **dst, int w, int h, bool fli
       pixels[offset + 0] = src[offset + 0];
       pixels[offset + 1] = src[offset + 1];
       pixels[offset + 2] = src[offset + 2];
-	  pixels[offset + 3] = 255;
+      pixels[offset + 3] = 255;
       offset += 4;
     }
   }
