@@ -48,11 +48,10 @@ static std::unordered_map<std::string, int> height;
 
 EXPORTED_FUNCTION double image_load(const char *filename) {
   unsigned char *src = nullptr;
-  bool alpha = false;
   if (!loadBMP(filename, &src, &width[filename], &height[filename])) {
     free(src);
     return true;
-  } else if (!loadPNG(filename, &src, &width[filename], &height[filename], &alpha)) {
+  } else if (!loadPNG(filename, &src, &width[filename], &height[filename])) {
     free(src);
     return true;
   }
@@ -80,18 +79,13 @@ EXPORTED_FUNCTION double image_get_height(const char *filename) {
 EXPORTED_FUNCTION double image_set_buffer(const char *filename, char *buffer) {
   unsigned char *src = nullptr;
   unsigned char *dst = (unsigned char *)buffer;
-  bool alpha = false;
   if (dst) {
     if (!loadBMP(filename, &src, &width[filename], &height[filename])) {
       rgb_to_rgba(src, &dst, width[filename], height[filename], true);
       free(src);
       return true;
-    } else if (!loadPNG(filename, &src, &width[filename], &height[filename], &alpha)) {
-      if (!alpha) {
-        rgb_to_rgba(src, &dst, width[filename], height[filename], false);
-      } else {
-        copy_rgba(src, &dst, width[filename], height[filename]);
-      }
+    } else if (!loadPNG(filename, &src, &width[filename], &height[filename])) {
+      copy_rgba(src, &dst, width[filename], height[filename]);
       free(src);
       return true;
     }

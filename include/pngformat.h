@@ -2,7 +2,6 @@
 
 BSD 2-Clause License
 
-Copyright © 2018-2019, Robert B. Colton
 Copyright © 2021, Samuel Venable
 All rights reserved.
 
@@ -32,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef PNGFORMAT_H_INCLUDED
 #define PNGFORMAT_H_INCLUDED
 
-int loadPNG(const char *filename, unsigned char **pixels, int *width, int *height, bool *alpha);
+int loadPNG(const char *filename, unsigned char **pixels, int *width, int *height);
 int writePNG(const char *filename, unsigned char *data, int width, int height);
 
 #endif
